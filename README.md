@@ -13,6 +13,8 @@ Ch4: T2 --> T4
 
 Ch5: T5
 
+### Coverage results:
+
 Cov(Ch1) = 100%
 
 Cov(Ch2) = 80%

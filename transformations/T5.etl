@@ -1,0 +1,28 @@
+rule Root
+	transform s : Source!Root
+	to t : Target!Root {
+	t.gs ::= s.as;
+	t.hs ::= s.bs.includingAll(s.cs);
+	
+
+}
+
+rule A2G
+transform s: Source!A
+to t: Target!G{
+	t.g = "element created from "+ s.a;
+	
+} 
+
+rule B2H
+transform s: Source!B
+to t: Target!H {
+	t.h = "element created from "+ s.b;
+} 
+
+rule C2H
+transform s: Source!C
+to t: Target!H {
+	t.h = "element created from "+ s.c;
+}
+

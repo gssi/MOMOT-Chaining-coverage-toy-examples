@@ -1,0 +1,23 @@
+module ABC2DEF;
+create OUT : DEF from IN : ABC;
+
+rule Root{
+	from s:ABC!Root
+	to t: DEF!Root(
+	ds <- s.as,
+	
+	fs <- s.cs
+	)
+}
+rule A2D{
+	from s: ABC!A
+	to t: DEF!D
+}
+
+
+
+rule C2F{
+	from s: ABC!C
+	to t: DEF!F
+}
+

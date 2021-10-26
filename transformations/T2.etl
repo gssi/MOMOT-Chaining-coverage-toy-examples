@@ -1,0 +1,27 @@
+rule Root
+	transform s : Source!Root
+	to t : Target!Root {
+	t.ds ::= s.as;
+	t.es ::= s.bs;
+	t.fs ::= s.cs;
+}
+
+rule A2D
+transform s: Source!A
+to t: Target!D{
+	t.d = "element created from "+ s.a;
+} 
+
+rule B2E
+transform s: Source!B
+to t: Target!E{
+	t.e = "element created from "+ s.b;
+}
+
+rule C2F
+transform s: Source!C
+to t: Target!F{
+	t.f = "element created from "+ s.c;
+}
+
+

@@ -1,0 +1,32 @@
+module DEF2GH;
+create OUT : GH from IN : DEF;
+
+rule Root{
+	from s:DEF!Root
+	to t: GH!Root(
+	gs <- s.ds,
+	hs <- s.es,
+	hs <- s.fs
+	)
+}
+rule D2G{
+	from s: DEF!D
+	to t: GH!G(
+	g <- 'element created from '+ s.d	
+	)
+}
+
+rule E2H{
+	from s: DEF!E
+	to t: GH!H(
+	h <- 'element created from '+s.e	
+	)
+}
+
+rule F2H{
+	from s: DEF!F
+	to t: GH!H(
+	h <- 'element created from ' + s.f	
+	)
+}
+

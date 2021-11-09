@@ -30,6 +30,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import trafochainselection.ModelTransformationRepository;
+
 
 
 
@@ -40,13 +42,18 @@ public class Analyzer {
 		try {
 		root = Paths.get(Analyzer.class.getResource("").toURI());
 		
+		
 		Path modelsRoot = root.getParent().resolve(Analyzer.getRepoFolder(root+ "/settings.properties"));
 		
 		Path mmRoot = root.getParent().resolve("metamodels");
 		
-		genGraphEcore(modelsRoot, mmRoot);
+		TrafoChainSelectionModel repomodel=  TrafoChainSelectionModel.getInstance("model/repository.xmi");
 		
-		parseLaunchConfig(modelsRoot, mmRoot);
+		genGraphEcore(modelsRoot, mmRoot, repomodel);
+		
+		parseLaunchConfig(modelsRoot, mmRoot, repomodel);
+		
+		repomodel.persist();
 		
 		}catch(Exception e) {
 			System.err.println(e);
@@ -55,7 +62,7 @@ public class Analyzer {
 	
 	
 	
-	private static void parseLaunchConfig(Path modelsRoot, Path mmRoot) throws URISyntaxException, IOException, SAXException {
+	private static void parseLaunchConfig(Path modelsRoot, Path mmRoot, TrafoChainSelectionModel repomodel) throws URISyntaxException, IOException, SAXException {
 		// TODO Auto-generated method stub
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
@@ -67,7 +74,7 @@ public class Analyzer {
 
 	          // parse XML file
 	          DocumentBuilder db = dbf.newDocumentBuilder();
-	          
+	          Map<String, String> map = new HashMap<String, String>();
 	         
 	          Iterator repoiterator = Files.list(modelsRoot).filter(path -> path.getFileName().toString().endsWith(".launch")).iterator();
 
@@ -78,7 +85,7 @@ public class Analyzer {
 	    	        
 	  	          	doc.getDocumentElement().normalize();
 	  	          	
-	  	          	System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
+	  	          //System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
 	  	          	
 	  	          	if(doc.getDocumentElement().getAttribute("type").equals("org.epsilon.etl.eclipse.dt.launching.EtlLaunchConfigurationDelegate")) {
 	  	          		//ETL transformation launcher
@@ -101,7 +108,7 @@ public class Analyzer {
 			            				  Node enode = (Element) entrynode;
 			            				  //System.out.println(enode.getAttributes().getNamedItem("value").getTextContent());
 			            				  //System.out.println("========");
-			            				  Map<String, String> map = new HashMap<String, String>();
+			            				 
 			            				  String configstring=  enode.getAttributes().getNamedItem("value").getTextContent();
 			            				  //System.err.println(configstring);
 			            				  List<String> fixedLenghtList = Arrays.asList((configstring.split("\n")));
@@ -116,7 +123,8 @@ public class Analyzer {
 			            					  }
 			            				  }
 			            				  
-			            				  createMMNode(map.get("metamodelFile"));
+			            				  System.out.println("in/out mms: "+map.get("metamodelFile"));
+			            				  //createMMNode(map.get("metamodelFile"));
 			            			  }
 			            			
 			            		  }
@@ -136,7 +144,10 @@ public class Analyzer {
 		            	  Element element = (Element) node;
 		            	  if(element.getAttribute("key").equals("source")) {
 		            		  String trafo=(element.getAttribute("value"));
-		            		  createTrafoNode(trafo);
+		            		  //createtrafo
+		            		 
+		            		  System.out.println("Adding transformation to the repository: "+trafo);
+		            		  repomodel.addTrafo(trafo,map);
 		            	  }
 		  	    		   
 	  	          	}
@@ -154,17 +165,9 @@ public class Analyzer {
 
 
 
-	private static void createTrafoNode(String trafo) {
-		// TODO Auto-generated method stub
-		//create transformation element
-	}
 
 
-
-	private static void createMMNode(String string) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	public static void registerMMs(Path modelsRoot) {
 		// TODO Auto-generated method stub
@@ -203,7 +206,7 @@ public class Analyzer {
 
 
 
-private static void genGraphEcore( Path modelsRoot, Path mmRoot) {
+private static void genGraphEcore( Path modelsRoot, Path mmRoot, TrafoChainSelectionModel repomodel) {
 		// TODO Auto-generated method stub
 	String ecosystemMM = mmRoot.resolve("MDEEcosystemMM.ecore").toAbsolutePath().toUri().toString();
 	
@@ -218,11 +221,11 @@ private static void genGraphEcore( Path modelsRoot, Path mmRoot) {
 	while(repoiterator.hasNext()) {
 	Path pf=(Path)repoiterator.next();
 	//System.out.println(pf.getFileName());
-	String mm =  URI.createFileURI(new File(modelsRoot.resolve(pf.getFileName()).toString()).getAbsolutePath()).toString();
-		System.out.println(mm);
+	String mm =  URI.createFileURI(new File(modelsRoot.resolve(pf.getFileName()).toString()).getCanonicalPath()).toString();
+		System.out.println("adding metamodel to the repository: "+mm);
 		
 		//generate metamodel element 
-		createMMNode(mm);
+		repomodel.addMM(mm);
 	}
 			
 	

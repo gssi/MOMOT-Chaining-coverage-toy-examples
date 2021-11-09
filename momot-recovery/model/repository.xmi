@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<trafochainselection:TransformationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:trafochainselection="http://momot.big.tuwien.ac.at/examples/trafochainselection/1.0">
+  <modelTransformationRepository>
+    <transformations id="/momot-recovery/src/main/java/it/gssi/cs/momot/repository/Graph2SimpleTrace.etl"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/Entity.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/SimpleTrace.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/KM3.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/HTML.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/JavaSource.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/Table.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/TM.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/projectTable.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/researchProject.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/Person.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/Sample.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/XML.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/flowchart.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/Tree.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/DB.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/Graph.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/Project.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/structuredContent.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/Ecore.ecore"/>
+    <metamodels id="file:/Users/administrator/git/MOMOT-Chaining-coverage-toy-examples/momot-recovery/target/classes/it/gssi/cs/momot/repository/DirectedGraph.ecore"/>
+  </modelTransformationRepository>
+</trafochainselection:TransformationModel>

@@ -156,7 +156,7 @@ public class Analyzer {
 
 	private static void createTrafoNode(String trafo) {
 		// TODO Auto-generated method stub
-		
+		//create transformation element
 	}
 
 
@@ -218,11 +218,11 @@ private static void genGraphEcore( Path modelsRoot, Path mmRoot) {
 	while(repoiterator.hasNext()) {
 	Path pf=(Path)repoiterator.next();
 	//System.out.println(pf.getFileName());
-	
-		System.out.println(URI.createFileURI(new File(modelsRoot.resolve(pf.getFileName()).toString()).getAbsolutePath()).toString());
+	String mm =  URI.createFileURI(new File(modelsRoot.resolve(pf.getFileName()).toString()).getAbsolutePath()).toString();
+		System.out.println(mm);
 		
-	
-	
+		//generate metamodel element 
+		createMMNode(mm);
 	}
 			
 	
